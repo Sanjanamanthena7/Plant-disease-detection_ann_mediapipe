@@ -7,3 +7,15 @@ opencv-python==4.11.0.86
 Pillow==11.3.0
 scikit-learn==1.7.1
 matplotlib==3.10.5
+
+
+streamlit
+tensorflow
+keras
+opencv-python-headless
+numpy
+pandas
+pillow
+mediapipe
+scikit-learn
+joblib
