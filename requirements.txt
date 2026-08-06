@@ -3,7 +3,7 @@ tensorflow==2.19.0
 keras==3.11.2
 numpy==1.26.4
 pandas==2.2.3
-opencv-python-headless==4.10.0.84
+opencv-python
 pillow==11.0.0
 mediapipe==0.10.21
 scikit-learn==1.5.2
