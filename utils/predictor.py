@@ -11,11 +11,12 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MODEL_PATH = os.path.join(BASE_DIR, "models", "plant_disease_ann.h5")
+
+model = load_model(MODEL_PATH, compile=False)
+
 CLASS_PATH = os.path.join(BASE_DIR, "models", "class_names.json")
 
-model = load_model(MODEL_PATH)
-
-
+model = load_model(MODEL_PATH, compile=False)
 
 
 with open(CLASS_PATH, "r") as f:
