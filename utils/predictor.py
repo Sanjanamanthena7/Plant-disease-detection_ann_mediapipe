@@ -6,12 +6,17 @@ from keras.models import load_model
 # ==========================================================
 # LOAD MODEL
 # ==========================================================
-MODEL_PATH = r"C:\Users\22053\OneDrive\Desktop\plant_ann\models\plant_disease_ann.h5"
+import os
 
-model = load_model(MODEL_PATH, compile=False)
-CLASS_PATH = "models/class_names.json"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-model = load_model(MODEL_PATH, compile=False)
+MODEL_PATH = os.path.join(BASE_DIR, "models", "plant_disease_ann.h5")
+CLASS_PATH = os.path.join(BASE_DIR, "models", "class_names.json")
+
+model = load_model(MODEL_PATH)
+
+
+
 
 with open(CLASS_PATH, "r") as f:
     class_names = json.load(f)
