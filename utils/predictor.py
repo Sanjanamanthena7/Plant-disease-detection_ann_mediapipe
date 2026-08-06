@@ -6,7 +6,7 @@ from keras.models import load_model
 # ==========================================================
 # LOAD MODEL
 # ==========================================================
-MODEL_PATH = r"C:\Users\22053\OneDrive\Desktop\plant_ann\models\plant_disease_ann.keras"
+MODEL_PATH = r"C:\Users\22053\OneDrive\Desktop\plant_ann\models\plant_disease_ann.h5"
 
 model = load_model(MODEL_PATH, compile=False)
 CLASS_PATH = "models/class_names.json"
