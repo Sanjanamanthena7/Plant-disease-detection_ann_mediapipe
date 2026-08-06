@@ -13,6 +13,6 @@
 
 from tensorflow.keras.models import load_model
 
-
+model = load_model("models/plant_disease_ann.h5")
 
 print("Loaded Successfully")
