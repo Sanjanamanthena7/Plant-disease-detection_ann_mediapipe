@@ -2,23 +2,33 @@ import streamlit as st
 import cv2
 import numpy as np
 import pandas as pd
-import av
+
 from PIL import Image
 
 import sys
 import tensorflow as tf
-import keras
+from tensorflow import keras
 
-print("="*60)
-print(sys.executable)
-print("TensorFlow:", tf.__version__)
-print("Keras:", keras.__version__)
-print("="*60)
+try:
+    import av
+except:
+    av = None
 
-from streamlit_webrtc import (
-    webrtc_streamer,
-    VideoProcessorBase
-)
+# print("="*60)
+# print(sys.executable)
+# print("TensorFlow:", tf.__version__)
+# print("Keras:", keras.__version__)
+# print("="*60)
+
+# from streamlit_webrtc import (
+#     webrtc_streamer,
+#     VideoProcessorBase
+# )
+
+
+from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
+
+    
 
 from utils.predictor import (
     predict_disease,
@@ -393,10 +403,11 @@ if mode == "📤 Upload Image":
 # ==========================================================
 # LIVE WEBCAM
 # ==========================================================
+# if webcam_available:
 
 class PlantDiseaseProcessor(VideoProcessorBase):
 
-    def recv(self, frame):
+   def recv(self, frame):   
 
         image = frame.to_ndarray(format="bgr24")
 
@@ -486,68 +497,68 @@ class PlantDiseaseProcessor(VideoProcessorBase):
         )
 
 
+
 # ==========================================================
 # LIVE CAMERA MODE
 # ==========================================================
 
 if mode == "📹 Live Webcam":
 
-    st.info(
-        "Click START and show a leaf in front of the webcam."
-    )
+#if webcam_available:
+
+    st.info("Click START and show a leaf.")
 
     webrtc_streamer(
-
         key="plant-disease",
-
         video_processor_factory=PlantDiseaseProcessor,
-
         media_stream_constraints={
-            "video":True,
-            "audio":False
+            "video": True,
+            "audio": False,
         },
-
-        async_processing=True
-
+        async_processing=True,
     )
 
-    st.markdown("---")
+# else:
 
-    st.subheader("Supported Crops")
+#     st.warning("Webcam is not supported on this deployment.")
 
-    c1,c2,c3,c4 = st.columns(4)
+st.markdown("---")
 
-    with c1:
+st.subheader("Supported Crops")
 
-        st.success("🍎 Apple")
+c1,c2,c3,c4 = st.columns(4)
 
-        st.success("🍅 Tomato")
+with c1:
 
-        st.success("🥔 Potato")
+    st.success("🍎 Apple")
 
-    with c2:
+    st.success("🍅 Tomato")
 
-        st.success("🌽 Corn")
+    st.success("🥔 Potato")
 
-        st.success("🍇 Grape")
+with c2:
 
-        st.success("🍑 Peach")
+    st.success("🌽 Corn")
 
-    with c3:
+    st.success("🍇 Grape")
 
-        st.success("🍊 Orange")
+    st.success("🍑 Peach")
 
-        st.success("🍓 Strawberry")
+with c3:
 
-        st.success("🫑 Pepper")
+    st.success("🍊 Orange")
 
-    with c4:
+    st.success("🍓 Strawberry")
 
-        st.success("🍒 Cherry")
+    st.success("🫑 Pepper")
 
-        st.success("🫐 Blueberry")
+with c4:
 
-        st.success("🌱 Soybean")
+    st.success("🍒 Cherry")
+
+    st.success("🫐 Blueberry")
+
+    st.success("🌱 Soybean")
 
 
 
